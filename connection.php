@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 $host = "localhost";
 $dbuser = "root";
 $pass = "";

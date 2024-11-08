@@ -1,5 +1,5 @@
 <?php
-include "../config/connection.php";
+include "../connection.php";
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: *");
 
@@ -22,6 +22,11 @@ if ($result->num_rows > 0) {
     $query = $connection->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
     $query->bind_param("ss", $username, $password);
     $query->execute();
-    echo json_encode(["status" => "success", "message" => "User registered successfully"]);
+    $query = $connection->prepare("SELECT * FROM users WHERE username = ?");
+    $query->bind_param("s", $username);
+    $query->execute();
+    $result = $query->get_result();
+    $user = $result->fetch_assoc();
+    echo json_encode(["userid" => $user['id']]);
 }
 ?>

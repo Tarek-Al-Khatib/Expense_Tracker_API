@@ -1,5 +1,5 @@
 <?php
-include "../config/connection.php";
+include "../connection.php";
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: *");
 
@@ -19,7 +19,7 @@ $result = $query->get_result();
 if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
     if ($password = $user['password']) {
-        echo json_encode(["status" => "success", "message" => "Login successful"]);
+        echo json_encode(["userid" => $user['id']]);
     } else {
         echo json_encode(["status" => "error", "message" => "Incorrect password"]);
     }

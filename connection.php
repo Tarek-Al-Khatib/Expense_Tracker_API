@@ -3,7 +3,7 @@
 $host = "localhost";
 $dbuser = "root";
 $pass = "";
-$dbname = "mydb";
+$dbname = "sefactory";
 
 $connection = new mysqli($host, $dbuser, $pass, $dbname);
 

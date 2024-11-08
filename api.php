@@ -38,4 +38,12 @@ switch($action) {
         }
         echo json_encode($transactions);
         break;
+  case 'delete':
+        $id = $_POST['id'];
+
+        $query = $connection->prepare("DELETE FROM transactions WHERE id = ?");
+        $query->bind_param("i", $id);
+        $query->execute();
+        echo json_encode(["status" => "success"]);
+        break;
 }

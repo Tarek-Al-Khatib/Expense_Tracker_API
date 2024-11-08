@@ -1,5 +1,5 @@
 <?php
-include "connection.php";
+include "../connection.php";
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: *");
 

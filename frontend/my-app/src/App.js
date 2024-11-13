@@ -1,23 +1,126 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1 className="text-center padding">Transactions</h1>
+
+      <div className="padding flex row wrap horizontal-center filters">
+        <div className="padding">
+          <label htmlFor="min">Minimum Amount:</label>
+          <input
+            type="number"
+            id="min"
+            value={filters.min}
+            onChange={handleFilterChange}
+          />
+        </div>
+        <div className="padding">
+          <label htmlFor="max">Maximum Amount:</label>
+          <input
+            type="number"
+            id="max"
+            value={filters.max}
+            onChange={handleFilterChange}
+          />
+        </div>
+        <div className="padding">
+          <label htmlFor="type">Type:</label>
+          <select id="type" value={filters.type} onChange={handleFilterChange}>
+            <option value="all">All</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+        <div className="padding">
+          <label htmlFor="date">Date:</label>
+          <input
+            type="date"
+            id="date"
+            value={filters.date}
+            onChange={handleFilterChange}
+          />
+        </div>
+        <div className="padding">
+          <label htmlFor="notes">Notes:</label>
+          <input
+            type="text"
+            id="notes"
+            value={filters.notes}
+            onChange={handleFilterChange}
+          />
+        </div>
+        <button className="filter-button bg-green">Filter</button>
+      </div>
+
+      <table className="transaction-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Note</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions.map((transaction, index) => (
+            <tr key={index}>
+              <td>{transaction.type}</td>
+              <td>{transaction.amount}</td>
+              <td>{transaction.date}</td>
+              <td>{transaction.notes}</td>
+              <td>
+                <button className="action-button bg-green">Edit</button>
+                <button className="action-button bg-green">Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <form className="flex column horizontal-center transaction-form">
+        <label htmlFor="type">Type:</label>
+        <select id="type" value={formState.type} onChange={handleFormChange}>
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+        <label htmlFor="amount">Amount:</label>
+        <input
+          type="number"
+          id="amount"
+          value={formState.amount}
+          onChange={handleFormChange}
+        />
+        <label htmlFor="date">Date:</label>
+        <input
+          type="date"
+          id="date"
+          value={formState.date}
+          onChange={handleFormChange}
+        />
+        <label htmlFor="notes">Notes:</label>
+        <input
+          type="text"
+          id="notes"
+          value={formState.notes}
+          onChange={handleFormChange}
+        />
+        <div className="flex horizontal-center padding">
+          <button
+            type="button"
+            className="action-button bg-green"
+            onClick={handleAddTransaction}
+          >
+            Add
+          </button>
+        </div>
+      </form>
+
+      <p className="budget text-green" id="budget">
+        Budget: {budget}
+      </p>
     </div>
   );
 }

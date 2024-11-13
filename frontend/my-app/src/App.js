@@ -195,7 +195,6 @@ function App() {
                   className={`delete-button edit-delete ${
                     transaction.type === "income" ? "bg-red" : "bg-green"
                   }`}
-                  onClick={() => deleteTransaction(transaction.id)}
                 >
                   Delete
                 </button>
@@ -208,10 +207,6 @@ function App() {
       <form
         id="transaction-form"
         className="flex column horizontal-center transaction-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          isEditing ? editTransaction() : addTransaction();
-        }}
       >
         <input type="hidden" id="transaction-id" value={formState.id || ""} />
         <label htmlFor="type">Type:</label>

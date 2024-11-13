@@ -11,6 +11,22 @@ function App() {
     date: "",
     notes: "",
   });
+  const [formState, setFormState] = useState({
+    type: "income",
+    amount: "",
+    date: "",
+    notes: "",
+  });
+
+  const handleFilterChange = (e) => {
+    const { id, value } = e.target;
+    setFilters({ ...filters, [id]: value });
+  };
+
+  const handleFormChange = (e) => {
+    const { id, value } = e.target;
+    setFormState({ ...formState, [id]: value });
+  };
 
   return (
     <div className="app">

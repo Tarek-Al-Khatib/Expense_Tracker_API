@@ -27,7 +27,23 @@ function App() {
     const { id, value } = e.target;
     setFormState({ ...formState, [id]: value });
   };
+  const handleAddTransaction = () => {
+    const newTransaction = {
+      ...formState,
+      amount: parseFloat(formState.amount),
+    };
+    setTransactions([...transactions, newTransaction]);
+    updateBudget(newTransaction);
+    setFormState({ type: "income", amount: "", date: "", notes: "" });
+  };
 
+  const updateBudget = (transaction) => {
+    const updatedBudget =
+      transaction.type === "income"
+        ? budget + transaction.amount
+        : budget - transaction.amount;
+    setBudget(updatedBudget);
+  };
   return (
     <div className="app">
       <h1 className="text-center padding">Transactions</h1>

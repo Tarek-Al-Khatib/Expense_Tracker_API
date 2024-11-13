@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import "./base/base.css";
+import "./base/colors.css";
 
 function App() {
   const [transactions, setTransactions] = useState([]);
   const [budget, setBudget] = useState(0);
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userid");
+    axios
+      .post(
+        "http://localhost:8080/expense-tracker/transactions/get.php",
+        new URLSearchParams({ id: userId }),
+        {
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        }
+      )
+      .then((response) => {
+        setTransactions(response.data);
+        calculateBudget(response.data);
+      });
+  }, []);
   const [filters, setFilters] = useState({
     min: "",
     max: "",

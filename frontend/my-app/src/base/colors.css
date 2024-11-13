@@ -1,0 +1,23 @@
+.text-green {
+  color: #28a745; /* Green for positive/income */
+}
+
+.bg-green {
+  background-color: #28a745;
+}
+
+.text-white {
+  color: #ffffff; /* White for neutral/clean backgrounds */
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.text-red {
+  color: #dc3545; /* Red for negative/expenses */
+}
+
+.bg-red {
+  background-color: #dc3545;
+}

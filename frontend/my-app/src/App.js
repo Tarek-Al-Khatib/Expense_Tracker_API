@@ -2,6 +2,16 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [transactions, setTransactions] = useState([]);
+  const [budget, setBudget] = useState(0);
+  const [filters, setFilters] = useState({
+    min: "",
+    max: "",
+    type: "all",
+    date: "",
+    notes: "",
+  });
+
   return (
     <div className="app">
       <h1 className="text-center padding">Transactions</h1>
